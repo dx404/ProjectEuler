@@ -1,0 +1,12 @@
+In[30]:= CirPrimeQ[n_] := Module[{
+   nl = IntegerDigits[n]
+   },
+  rtl = NestList[RotateLeft, nl, Length@nl - 1];
+  rtn = FromDigits /@ rtl;
+  rtq = PrimeQ /@ rtn;
+  query = And @@ rtq
+  ]
+
+In[34]:= Select[Range[10^6], CirPrimeQ] // Length
+
+Out[34]= 55
