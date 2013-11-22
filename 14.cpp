@@ -13,7 +13,7 @@ using namespace std;
 
 const uint64_t N = 1e6;
 vector<uint64_t> cSize(N + 1,0);
-typedef long long INT_TYPE ;
+typedef uint64_t INT_TYPE; // int is not OK here
 
 int main(int argc, char *argv[]){
     INT_TYPE maxCize = 0;
