@@ -1,0 +1,14 @@
+fp[n_, a_, b_] := PrimeQ[n^2 + a n + b];
+selectfp[pa_, n_] := Select[pa, fp[n, Sequence @@ #] &];
+abPair = Tuples[Range[-1000, 1000], 2];
+
+In[66]:= result = NestWhile[{
+    selectfp[#[[1]], #[[2]]],
+    #[[2]] + 1} &,
+  {abPair, 0}, Length[#[[1]]] > 1 &]
+
+Out[66]= {{{-61, 971}}, 71}
+
+In[76]:= pResult = Times @@ Flatten[result][[1 ;; 2]]
+
+Out[76]= -59231
