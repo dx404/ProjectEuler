@@ -1,0 +1,28 @@
+In[160]:= acList = {};
+
+get3Partition[n_] := Flatten[
+  Table[FromDigits /@ {n[[;; i]], n[[i + 1 ;; j]], n[[j + 1 ;;]]}, {i,
+     1, 9}, {j, i + 1, 9}], 1];
+
+In[162]:= getMulTest[n_] := Module[{
+   canList = get3Partition[n]
+   },
+  truthList = 
+   Select[canList, (#[[3]] != 0 && #[[1]]*#[[2]] == #[[3]]) &];
+  (*Print[truthList];*)
+  acList = Union[acList, truthList];
+  ]
+
+In[163]:= sr = getMulTest[#] & /@ Permutations[Range[9]];
+
+In[165]:= acList
+
+Out[165]= {{4, 1738, 6952}, {4, 1963, 7852}, {12, 483, 5796}, {18, 
+  297, 5346}, {27, 198, 5346}, {28, 157, 4396}, {39, 186, 7254}, {42, 
+  138, 5796}, {48, 159, 7632}, {138, 42, 5796}, {157, 28, 4396}, {159,
+   48, 7632}, {186, 39, 7254}, {198, 27, 5346}, {297, 18, 5346}, {483,
+   12, 5796}, {1738, 4, 6952}, {1963, 4, 7852}}
+
+In[167]:= Total@Union@acList[[;; , 3]]
+
+Out[167]= 45228
